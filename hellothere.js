@@ -353,7 +353,7 @@ submissionStream.on('submission', function(post) {
     } else if (title === title2) {
       console.log("General Reposti!");
       console.log('Reposti Link: ' + post.permalink);
-      post.reply("[General Reposti! ](http://karmadecay.com/" + post.permalink + ") \n --- \n ^^^^I ^^^^am ^^^^a ^^^^human ^^^^and ^^^^bot, ^^^^message ^^^^me ^^^^if ^^^^the ^^^^bot ^^^^starts ^^^^slaughtering ^^^^the  ^^^^younglings");
+      post.reply("[General Reposti! ](http://karmadecay.com/" + post.permalink + ") \n --- \n ^^^^I ^^^^am ^^^^a ^^^^human ^^^^and ^^^^bot, ^^^^message ^^^^me ^^^^if ^^^^the ^^^^bot ^^^^starts ^^^^slaughtering ^^^^the  ^^^^younglings | [Source Code](https://github.com/BigRedDoge/PrequelMemes-Bot/blob/master/hellothere.js)");
     } else {
       console.log("Not a Reposti");
     }

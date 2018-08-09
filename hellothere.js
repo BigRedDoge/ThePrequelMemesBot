@@ -67,7 +67,16 @@ AllComments.on('comment', (comment) => {
     console.log("Senate Commented!");
     console.log("reddit.com" + comment.permalink);
     setTimeout(function() {
-      comment.reply("It\'s treason then");
+      comment.reply("Not yet");
+    }, 30000);
+  }
+
+  if (comment.body === 'The senate will decide your fate' || comment.body === 'the senate will decide your fate' || comment.body === 'The senate will decide your fate.'
+      || comment.body === 'the senate will decide your fate.') {
+    console.log("Senate Commented!");
+    console.log("reddit.com" + comment.permalink);
+    setTimeout(function() {
+      comment.reply("It's treason then");
     }, 30000);
   }
 
@@ -117,6 +126,21 @@ AllComments.on('comment', (comment) => {
     }, 30000);
   }
 
+  if (comment.body === "I\'ll try spinning, thats a good trick" || comment.body === "i\'ll try spinning, thats a good trick" || comment.body === "I\'ll try spinning, thats a good trick." || comment.body === "i\'ll try spinning, thats a good trick." ||
+      comment.body === "I\'ll try spinning thats a good trick" || comment.body === "i\'ll try spinning thats a good trick" || comment.body === "I\'ll try spinning thats a good trick." || comment.body === "i\'ll try spinning thats a good trick.") {
+    console.log("Spinning Commented");
+    console.log("reddit.com" + comment.permalink);
+    if (getRandomInt(2) === 0) {
+      setTimeout(function() {
+        comment.reply('Yippee!');
+      }, 30000);
+    } else {
+      setTimeout(function() {
+        comment.reply('This is where the fun begins');
+      }, 30000);
+    }
+  }
+
 });
 
 function getRandomInt(max) {
@@ -125,7 +149,7 @@ function getRandomInt(max) {
 
 const submissionStream = client.SubmissionStream({
   subreddit: 'PrequelMemes',
-  results: 5,
+  results: 100,
   pollTime: 5000
 });
 

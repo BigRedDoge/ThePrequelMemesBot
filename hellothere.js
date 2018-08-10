@@ -76,7 +76,7 @@ AllComments.on('comment', (comment) => {
     console.log("Senate Commented!");
     console.log("reddit.com" + comment.permalink);
     setTimeout(function() {
-      comment.reply("It's treason then");
+      comment.reply("It\'s treason then");
     }, 30000);
   }
 
@@ -113,16 +113,7 @@ AllComments.on('comment', (comment) => {
     console.log("Impressive Clones Commented");
     console.log("reddit.com" + comment.permalink);
     setTimeout(function() {
-      comment.reply("I’m just a simple man, trying to make my way in the universe");
-    }, 30000);
-  }
-
-  if (comment.body === "I don\'t think the system works." || comment.body === "i don\'t think the system works." || comment.body === "I don\'t think the system works" || comment.body === "i don\'t think the system works" ||
-      comment.body === "I dont think the system works." || comment.body === "i dont think the system works." || comment.body === "I dont think the system works" || comment.body === "i dont think the system works") {
-    console.log("System Commented");
-    console.log("reddit.com" + comment.permalink);
-    setTimeout(function() {
-      comment.reply("I’m just a simple man, trying to make my way in the universe");
+      comment.reply("I\’m just a simple man, trying to make my way in the universe");
     }, 30000);
   }
 
@@ -141,16 +132,61 @@ AllComments.on('comment', (comment) => {
     }
   }
 
+  if (comment.body === "You wanna buy some death sticks?" || comment.body === "you wanna buy some death sticks?" || comment.body === "You wanna buy some death sticks" || comment.body === "you wanna buy some death sticks?" || comment.body === "you wanna buy some death sticks" ||
+      comment.body === "Wanna buy some death sticks?" || comment.body === "wanna buy some death sticks?" || comment.body === "Wanna buy some death sticks" || comment.body === "wanna buy some death sticks") {
+    console.log("Death Sticks Commented");
+    console.log("reddit.com" + comment.permalink);
+    setTimeout(function() {
+      comment.reply("You don\'t want to sell death sticks");
+    }, 30000);
+  }
+
+  if (comment.body === "I\’m just a simple man, trying to make my way in the universe" || comment.body === "I\’m just a simple man trying to make my way in the universe" || comment.body === "I\’m just a simple man, trying to make my way in the universe." || comment.body === "I\’m just a simple man trying to make my way in the universe." ||
+      comment.body === "Im just a simple man, trying to make my way in the universe" || comment.body === "Im just a simple man trying to make my way in the universe" || comment.body === "Im just a simple man, trying to make my way in the universe." || comment.body === "Im just a simple man trying to make my way in the universe." ||
+      comment.body === "i\’m just a simple man, trying to make my way in the universe" || comment.body === "i\’m just a simple man, trying to make my way in the universe." || comment.body === "i\’m just a simple man trying to make my way in the universe" || comment.body === "i\’m just a simple man trying to make my way in the universe.") {
+    console.log("Simple Man Commented");
+    console.log("reddit.com" + comment.permalink);
+    setTimeout(function() {
+      comment.reply("Ever made your way as far into the interior as r/PrequelMemes?");
+    }, 30000);
+  }
+
+  if (comment.body === "I\'ve been looking forward to this" || comment.body === "i\'ve been looking forward to this" || comment.body === "I\'ve been looking forward to this." || comment.body === "i\'ve been looking forward to this." || comment.body === "Ive been looking forward to this" ||
+      comment.body === "Ive been looking forward to this." || comment.body === "ive been looking forward to this" || comment.body === "ive been looking forward to this.") {
+    console.log("Looking Foward to This Commented");
+    console.log("reddit.com" + comment.permalink);
+    setTimeout(function() {
+      comment.reply("My powers have doubled since the last time we met count");
+    }, 30000);
+  }
+
+  if ((comment.body).includes("y powers have doubled since the last time we met")) {
+    console.log("Looking Foward to This Commented");
+    console.log("reddit.com" + comment.permalink);
+    setTimeout(function() {
+      comment.reply("Good. Twice the pride, double the fall");
+    }, 30000);
+  }
+
+  if (comment.body === "Kill him, kill him now" || comment.body === "kill him, kill him now" || comment.body === "Kill him, kill him now." || comment.body === "kill him, kill him now." || comment.body === "Kill him now" || comment.body === "kill him now") {
+    console.log("Kill him now Commented");
+    console.log("reddit.com" + comment.permalink);
+    setTimeout(function() {
+      comment.reply("Dewit");
+    }, 30000);
+  }
+
 });
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
 
+
 const submissionStream = client.SubmissionStream({
   subreddit: 'PrequelMemes',
-  results: 100,
-  pollTime: 5000
+  results: 5,
+  pollTime: 2000
 });
 
 submissionStream.on('submission', function(post) {
@@ -162,9 +198,10 @@ submissionStream.on('submission', function(post) {
     } else if (title === title2) {
       console.log("General Reposti!");
       console.log('Reposti Link: ' + post.permalink);
-      post.reply("[General Reposti! ](http://karmadecay.com/" + post.permalink + ") \n --- \n ^^^^I ^^^^am ^^^^a ^^^^human ^^^^and ^^^^bot, ^^^^message ^^^^me ^^^^if ^^^^the ^^^^bot ^^^^starts ^^^^slaughtering ^^^^the  ^^^^younglings | [Source Code](https://github.com/BigRedDoge/PrequelMemes-Bot/blob/master/hellothere.js)");
+      post.reply("[General Reposti! ](http://karmadecay.com/" + post.permalink + ") \n --- \n ^^^^I ^^^^am ^^^^a ^^^^human ^^^^and ^^^^bot, ^^^^message ^^^^me ^^^^if ^^^^the ^^^^bot ^^^^executes ^^^^order ^^^^66  ^^^^| [^^^^Source ^^^^Code](https://github.com/BigRedDoge/PrequelMemes-Bot/blob/master/hellothere.js)");
     } else {
       console.log("Not a Reposti");
     }
   });
 });
+

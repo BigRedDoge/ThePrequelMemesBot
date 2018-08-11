@@ -65,9 +65,11 @@ AllComments.on('comment', (comment) => {
   if (comment.body === 'I am the Senate' || comment.body === 'I am the senate' || comment.body === 'i am the Senate') {
     console.log("Senate Commented!");
     console.log("reddit.com" + comment.permalink);
-    setTimeout(function() {
-      comment.reply("Not yet");
-    }, 15000);
+    if (author !== 'ThePrequelMemesBot') {
+      setTimeout(function() {
+        comment.reply("Not yet");
+      }, 15000);
+    }
   }
 
   if ((comment.body).includes('will decide your fate')) {
@@ -201,6 +203,30 @@ AllComments.on('comment', (comment) => {
     console.log("reddit.com" + comment.permalink);
     setTimeout(function() {
       comment.reply("It will be done, my lord");
+    }, 15000);
+  }
+
+  if (comment.body === "r/PrequelMemes" || comment.body === "/r/PrequelMemes" || comment.body === "r/prequelmemes" || comment.body === "/r/prequelmemes") {
+    console.log("r/PrequelMemes Commented");
+    console.log("reddit.com" + comment.permalink);
+    setTimeout(function() {
+      comment.reply("Is where the fun begins!");
+    }, 15000);
+  }
+
+  if (comment.body === "r/SequelMemes" || comment.body === "/r/SequelMemes" || comment.body === "r/sequelmemes" || comment.body === "/r/sequelmemes") {
+    console.log("r/PrequelMemes Commented");
+    console.log("reddit.com" + comment.permalink);
+    setTimeout(function() {
+      comment.reply("It's treason then");
+    }, 15000);
+  }
+
+  if ((comment.body).includes("ou turned her against me")) {
+    console.log("Turned Her Commented");
+    console.log("reddit.com" + comment.permalink);
+    setTimeout(function() {
+      comment.reply("You have done that yourself");
     }, 15000);
   }
 

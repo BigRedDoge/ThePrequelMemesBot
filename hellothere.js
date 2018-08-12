@@ -18,7 +18,8 @@ const client = new Snoostorm(r);
 
 const AllstreamOpts = {
   subreddit: 'all',
-  results: 100
+  results: 100,
+  pollTime: 2000
 }
 
 const AllComments = client.CommentStream(AllstreamOpts);
@@ -303,7 +304,7 @@ AllComments.on('comment', (comment) => {
     }
   }
 
-  if ((comment.body).includes("rom my point of view") && (comment.body).includes("the") && (comment.body).includes("are")) {
+  if ((comment.body).includes("rom my point of view") && (comment.body).includes("the") && (comment.body).includes("are evil")) {
     console.log("My Point of View Commented");
     console.log("reddit.com" + comment.permalink);
     if (author !== 'ThePrequelMemesBot') {
@@ -545,7 +546,7 @@ AllComments.on('comment', (comment) => {
     }
   }
 
-  if ((comment.body).includes("he oppression of the") || (comment.body).includes("will never return")) {
+  if ((comment.body).includes("he oppression of the") && (comment.body).includes("will never return")) {
     console.log("Jedi Are Taking Over Commented");
     console.log("reddit.com" + comment.permalink);
     if (author !== 'ThePrequelMemesBot') {
@@ -630,4 +631,24 @@ AllComments.on('comment', (comment) => {
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
+/*
+const submissionStream = client.SubmissionStream({
+  subreddit: 'PrequelMemes',
+});
 
+submissionStream.on('submission', function(post) {
+  var title = post.title
+  cloudscraper.get('http://karmadecay.com/' + post.permalink, function(err, response, body) {
+    var title2 = $(body).find('#content > table > tbody > tr:nth-child(7) > td.info > div.title > a').text();
+    if ((body).search('No very similar images were found on Reddit.') !== -1) {
+      console.log("Not a Reposti");
+    } else if (title === title2) {
+      console.log("General Reposti!");
+      console.log('Reposti Link: ' + post.permalink);
+      post.reply("[General Reposti! ](http://karmadecay.com/" + post.permalink + ") \n --- \n ^^^^I ^^^^am ^^^^a ^^^^human ^^^^and ^^^^bot, ^^^^message ^^^^me ^^^^if ^^^^the ^^^^bot ^^^^executes ^^^^order ^^^^66  ^^^^| [^^^^Source ^^^^Code](https://github.com/BigRedDoge/PrequelMemes-Bot)");
+    } else {
+      console.log("Not a Reposti");
+    }
+  });
+});
+*/

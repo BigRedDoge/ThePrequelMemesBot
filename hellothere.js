@@ -115,8 +115,7 @@ AllComments.on('comment', (comment) => {
   }
 
 
-  if (comment.body === "I\'ll try spinning, thats a good trick" || comment.body === "i\'ll try spinning, thats a good trick" || comment.body === "I\'ll try spinning, thats a good trick." || comment.body === "i\'ll try spinning, thats a good trick." ||
-      comment.body === "I\'ll try spinning thats a good trick" || comment.body === "i\'ll try spinning thats a good trick" || comment.body === "I\'ll try spinning thats a good trick." || comment.body === "i\'ll try spinning thats a good trick.") {
+  if ((comment.body).includes("ll try") && (comment.body).includes("a good trick")) {
     console.log("Spinning Commented");
     console.log("reddit.com" + comment.permalink);
     if (getRandomInt(2) === 0) {
@@ -138,9 +137,7 @@ AllComments.on('comment', (comment) => {
     }, 15000);
   }
 
-  if (comment.body === "I\’m just a simple man, trying to make my way in the universe" || comment.body === "I\’m just a simple man trying to make my way in the universe" || comment.body === "I\’m just a simple man, trying to make my way in the universe." || comment.body === "I\’m just a simple man trying to make my way in the universe." ||
-      comment.body === "Im just a simple man, trying to make my way in the universe" || comment.body === "Im just a simple man trying to make my way in the universe" || comment.body === "Im just a simple man, trying to make my way in the universe." || comment.body === "Im just a simple man trying to make my way in the universe." ||
-      comment.body === "i\’m just a simple man, trying to make my way in the universe" || comment.body === "i\’m just a simple man, trying to make my way in the universe." || comment.body === "i\’m just a simple man trying to make my way in the universe" || comment.body === "i\’m just a simple man trying to make my way in the universe.") {
+  if ((comment.body).includes("just a simple") && (comment.body).includes("trying to make my way in")) {
     console.log("Simple Man Commented");
     console.log("reddit.com" + comment.permalink);
     if (author !== 'ThePrequelMemesBot') {
@@ -633,3 +630,4 @@ AllComments.on('comment', (comment) => {
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
+

@@ -3,6 +3,9 @@ require('dotenv').config();
 const cloudscraper = require('cloudscraper');
 const $ = require('jquery')(require('jsdom-no-contextify').jsdom().parentWindow);
 
+const webshot = require('webshot');
+const imgur = require('imgur');
+
 const Snoowrap = require('snoowrap');
 const Snoostorm = require('snoostorm');
 
@@ -19,7 +22,7 @@ const client = new Snoostorm(r);
 const AllstreamOpts = {
   subreddit: 'all',
   results: 100,
-  pollTime: 2000
+  pollTime: 2050
 }
 
 const AllComments = client.CommentStream(AllstreamOpts);
@@ -68,7 +71,7 @@ AllComments.on('comment', (comment) => {
     console.log("reddit.com" + comment.permalink);
     if (author !== 'ThePrequelMemesBot') {
       setTimeout(function() {
-        comment.reply("Not yet");
+        comment.reply("Not. Yet.");
       }, 15000);
     }
   }
@@ -76,9 +79,11 @@ AllComments.on('comment', (comment) => {
   if ((comment.body).includes('will decide your fate')) {
     console.log("Senate Commented!");
     console.log("reddit.com" + comment.permalink);
-    setTimeout(function() {
-      comment.reply("I am the Senate");
-    }, 15000);
+    if (author !== 'ThePrequelMemesBot') {
+      setTimeout(function() {
+        comment.reply("I am the Senate");
+      }, 15000);
+    }
   }
 
   if (comment.body === 'My lord, is that legal?' || comment.body === 'my lord, is that legal?' || comment.body === 'My lord is that legal?' ||
@@ -284,7 +289,7 @@ AllComments.on('comment', (comment) => {
     }
   }
 
-  if ((comment.body).includes("nly a") && (comment.body).includes("deals in")) {
+  if ((comment.body).includes("nly a") && (comment.body).includes("deals in absolutes")) {
     console.log("Absolutes Commented");
     console.log("reddit.com" + comment.permalink);
     if (author !== 'ThePrequelMemesBot') {
@@ -446,7 +451,7 @@ AllComments.on('comment', (comment) => {
     }
   }
 
-  if ((comment.body).includes("his is outrageous") && (comment.body).includes("t\'s unfair")) {
+  if ((comment.body).includes("his is outrageous") && (comment.body).includes("t\'s unfair") && !((comment.body).includes("ow can you be"))) {
     console.log("Unfair Commented");
     console.log("reddit.com" + comment.permalink);
     if (author !== 'ThePrequelMemesBot') {
@@ -456,7 +461,7 @@ AllComments.on('comment', (comment) => {
     }
   }
 
-  if ((comment.body).includes("hat about the") && (comment.body).includes("attack") && (comment.body).includes("on the")) {
+  if ((comment.body).includes("hat about the droid") && (comment.body).includes("attack") && (comment.body).includes("on the")) {
     console.log("Droid Attack On The Wookies Commented");
     console.log("reddit.com" + comment.permalink);
     if (author !== 'ThePrequelMemesBot') {
@@ -516,7 +521,7 @@ AllComments.on('comment', (comment) => {
     }
   }
 
-  if ((comment.body).includes("re you threatening me") && (comment.body).includes("aster") && (comment.body).includes("edi")) {
+  if ((comment.body).includes("re you threatening me") && (comment.body).includes("aster")) {
     console.log("Threatening Me Commented");
     console.log("reddit.com" + comment.permalink);
     if (author !== 'ThePrequelMemesBot') {
@@ -531,7 +536,7 @@ AllComments.on('comment', (comment) => {
     console.log("reddit.com" + comment.permalink);
     if (author !== 'ThePrequelMemesBot') {
       setTimeout(function() {
-        comment.reply("I am the senate");
+        comment.reply("I am the Senate");
       }, 15000);
     }
   }
@@ -597,7 +602,7 @@ AllComments.on('comment', (comment) => {
   }
 
   if ((comment.body).includes("epublic will be reorganized") && (comment.body).includes("into the first") && (comment.body).includes("alactic") && (comment.body).includes("mpire")) {
-    console.log("Scarred and Deformed Commented");
+    console.log("Reorganized Commented");
     console.log("reddit.com" + comment.permalink);
     if (author !== 'ThePrequelMemesBot') {
       setTimeout(function() {
@@ -626,7 +631,81 @@ AllComments.on('comment', (comment) => {
     }
   }
 
+  if ((comment.body).includes("u/ThePrequelMemesBot") || (comment.body).includes("/u/ThePrequelMemesBot")) {
+    console.log("u/ThePrequelMemesBot Commented");
+    console.log("reddit.com" + comment.permalink);
+    if (author !== 'ThePrequelMemesBot') {
+      comment.reply("Hello there!");
+    }
+  }
+
+  if (comment.body === "Roger roger" || comment.body === "roger roger" || comment.body === "Roger, roger" || comment.body === "roger, roger" || comment.body === "Roger roger." ||
+      comment.body === "Roger, roger." || comment.body === "Roger Roger" || comment.body === "Roger Roger.") {
+    console.log("Roger Roger Commented");
+    console.log("reddit.com" + comment.permalink);
+    if (author !== 'ThePrequelMemesBot') {
+      setTimeout(function() {
+        comment.reply("Roger Roger");
+      }, 15000);
+    }
+  }
+
+  if ((comment.body).includes("see through the lies of the")) {
+    console.log("Fear The Lies Of The Jedi Commented");
+    console.log("reddit.com" + comment.permalink);
+    if (author !== 'ThePrequelMemesBot') {
+      comment.reply("I do not fear the dark side as you do!");
+    }
+  }
+
+  if (comment.body === "!screenshot") {
+    console.log("Screenshot");
+    var link = "https://reddit.com" + comment.permalink + "?context=10000";
+    var img_name = comment.name;
+    screenshot(link, img_name, image_url => {
+      console.log(image_url);
+      comment.reply(image_url + "\n --- \n ^^^^I\'m ^^^^a ^^^^bot ^^^^that ^^^^takes ^^^^screenshots ^^^^of ^^^^comment ^^^^chains ^^^^| ^^^^[creator](u/The_Big_Red_Doge)");
+    });
+  }
+
+
 });
+
+imgur.setCredentials(process.env.IMGUR_EMAIL, process.env.IMGUR_PASSWORD, process.env.IMGUR_CLIENT_ID);
+
+var options = {
+  screenSize: {
+    width: 800,
+    height: 920
+  },
+  shotSize: {
+    width: 750,
+    height: 700
+  },
+  shotOffset: {
+    left: 25,
+    right: 25,
+    top: 220,
+    bottom: 0
+  }
+};
+
+function screenshot(link, img_name, image_url) {
+  var name = '/screenshots/' + img_name + '.png';
+  webshot(link, name, options, function(err) {
+    if (err) throw err;
+    console.log("Screenshot Saved");
+    imgur.uploadFile(name)
+      .then(function(json) {
+        image_url(json.data.link);
+      })
+      .catch(function(err) {
+        console.error(err.message);
+      });
+  });
+}
+
+
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));

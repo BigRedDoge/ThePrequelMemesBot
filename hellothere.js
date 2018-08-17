@@ -33,9 +33,11 @@ AllComments.on('comment', (comment) => {
       comment.body === 'Hello There!' || comment.body === 'Hello there!' || comment.body === 'hello there!') {
     console.log("General Kenobi Commented!");
     console.log("reddit.com" + comment.permalink);
-    setTimeout(function() {
-      comment.reply('General Kenobi!');
-    }, 15000);
+    if (author !== 'ThePrequelMemesBot') {
+      setTimeout(function() {
+        comment.reply('General Kenobi!');
+      }, 15000);
+    }
   }
 
   if (comment.body === 'General Reposti!' || comment.body === 'General reposti!' || comment.body === 'general reposti!' ||
@@ -139,7 +141,7 @@ AllComments.on('comment', (comment) => {
     console.log("Death Sticks Commented");
     console.log("reddit.com" + comment.permalink);
     setTimeout(function() {
-      comment.reply("You don\'t want to sell death sticks");
+      comment.reply("You don\'t want to me sell death sticks");
     }, 15000);
   }
 
@@ -165,9 +167,11 @@ AllComments.on('comment', (comment) => {
   if ((comment.body).includes("doubled since the last time we met")) {
     console.log("Looking Foward to This Commented");
     console.log("reddit.com" + comment.permalink);
-    setTimeout(function() {
-      comment.reply("Good. Twice the pride, double the fall");
-    }, 15000);
+    if (author !== 'ThePrequelMemesBot') {
+      setTimeout(function() {
+        comment.reply("Good. Twice the pride, double the fall");
+      }, 15000);
+    }
   }
 
   if (comment.body === "Kill him, kill him now" || comment.body === "kill him, kill him now" || comment.body === "Kill him, kill him now." || comment.body === "kill him, kill him now." || comment.body === "Kill him now" || comment.body === "kill him now") {
@@ -237,7 +241,7 @@ AllComments.on('comment', (comment) => {
     console.log("Swore to Destroy Commented");
     console.log("reddit.com" + comment.permalink);
     setTimeout(function() {
-      comment.reply("Don't lecure me Obi Wan");
+      comment.reply("Don't lecture me, Obi-Wan!");
     }, 15000);
   }
 
@@ -339,7 +343,7 @@ AllComments.on('comment', (comment) => {
     }
   }
 
-  if (comment.body === "I hate you") {
+  if (comment.body === "I hate you" || comment.body === "I hate you!") {
     console.log("I hate you Commented");
     console.log("reddit.com" + comment.permalink);
     if (author !== 'ThePrequelMemesBot') {
@@ -451,7 +455,7 @@ AllComments.on('comment', (comment) => {
     }
   }
 
-  if ((comment.body).includes("his is outrageous") && (comment.body).includes("t\'s unfair") && !((comment.body).includes("ow can you be"))) {
+  if ((comment.body).includes("his is outrageous") && (comment.body).includes("t\'s unfair") && ((comment.body).indexOf("ow can you be")) === -1) {
     console.log("Unfair Commented");
     console.log("reddit.com" + comment.permalink);
     if (author !== 'ThePrequelMemesBot') {
@@ -491,7 +495,7 @@ AllComments.on('comment', (comment) => {
     }
   }
 
-  if ((comment.body).includes("id you ever hear the tragedy")) {
+  if ((comment.body).includes("id you ever hear the tragedy") && (comment.body).indexOf("thought not") === -1) {
     console.log("Tragedy Of Darth Plagueis The Wise Commented");
     console.log("reddit.com" + comment.permalink);
     if (author !== 'ThePrequelMemesBot') {
@@ -526,7 +530,7 @@ AllComments.on('comment', (comment) => {
     console.log("reddit.com" + comment.permalink);
     if (author !== 'ThePrequelMemesBot') {
       setTimeout(function() {
-        comment.reply("The senate will decide your fate");
+        comment.reply("The Senate will decide your fate");
       }, 15000);
     }
   }
@@ -626,7 +630,7 @@ AllComments.on('comment', (comment) => {
     console.log("reddit.com" + comment.permalink);
     if (author !== 'ThePrequelMemesBot') {
       setTimeout(function() {
-        comment.reply("You're going down a path I can\'t follow.");
+        comment.reply("You're going down a path I can\'t follow!");
       }, 15000);
     }
   }
@@ -664,7 +668,7 @@ AllComments.on('comment', (comment) => {
     var img_name = comment.name;
     screenshot(link, img_name, image_url => {
       console.log(image_url);
-      comment.reply(image_url + "\n --- \n ^^^^I\'m ^^^^a ^^^^bot ^^^^that ^^^^takes ^^^^screenshots ^^^^of ^^^^comment ^^^^chains ^^^^| ^^^^[creator](u/The_Big_Red_Doge)");
+      comment.reply(image_url + "\n --- \n ^^^^I\'m ^^^^a ^^^^bot ^^^^that ^^^^takes ^^^^screenshots ^^^^of ^^^^comment ^^^^chains ^^^^| ^^^^[Creator](/u/The_Big_Red_Doge)");
     });
   }
 
@@ -687,7 +691,9 @@ var options = {
     right: 25,
     top: 220,
     bottom: 0
-  }
+  },
+  quality: 100,
+  captureSelector: true
 };
 
 function screenshot(link, img_name, image_url) {

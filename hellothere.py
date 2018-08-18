@@ -25,6 +25,24 @@ def process_submission(comment):
             time.sleep(15)
             comment.reply('General Kenobi!')
 
+    if (comment.body == 'General Reposti!' or comment.body == 'General reposti!' or comment.body == 'general reposti!' or comment.body == 'General Reposti' or comment.body == 'General reposti' or comment.body == 'general reposti'):
+        print("Reposti Commented!")
+        print("reddit.com" + comment.permalink)
+        if (getRandomInt(2) == 0):
+            time.sleep(15)
+            comment.reply('You are a bold one!')
+        else:
+            time.sleep(15)
+            comment.reply('You are an old one!')
+
+    if (comment.body == 'General Kenobi!' or comment.body == 'General kenobi!' or comment.body == 'general kenobi!' or comment.body == 'General Kenobi' or comment.body == 'General kenobi' or comment.body == 'general kenobi'):
+        if (author != 'ThePrequelMemesBot'):
+          print("Kenobi Commented!")
+          print("reddit.com" + comment.permalink)
+          time.sleep(15)
+          comment.reply('You are a bold one!')
+
+
     if (comment.body == 'I am the Senate' or comment.body == 'I am the senate' or comment.body == 'i am the Senate'):
       print("Senate Commented!")
       print("reddit.com" + comment.permalink)

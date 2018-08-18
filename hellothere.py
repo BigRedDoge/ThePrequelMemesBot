@@ -1,5 +1,6 @@
 import praw
 import time
+import random
 
 
 def main():
@@ -28,7 +29,7 @@ def process_submission(comment):
     if (comment.body == 'General Reposti!' or comment.body == 'General reposti!' or comment.body == 'general reposti!' or comment.body == 'General Reposti' or comment.body == 'General reposti' or comment.body == 'general reposti'):
         print("Reposti Commented!")
         print("reddit.com" + comment.permalink)
-        if (getRandomInt(2) == 0):
+        if (random.randint(0,1) == 0):
             time.sleep(15)
             comment.reply('You are a bold one!')
         else:
@@ -85,7 +86,7 @@ def process_submission(comment):
     if ("ll try" in comment.body and "a good trick" in comment.body):
         print("Spinning Commented")
         print("reddit.com" + comment.permalink)
-        if (getRandomInt(2) == 0):
+        if (random.randint(0,1) == 0):
             time.sleep(15)
             comment.reply('Yippee!')
         else:

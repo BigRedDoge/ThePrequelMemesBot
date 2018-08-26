@@ -101,7 +101,7 @@ function quoteCheck(comment) {
     });
   }
 
-  if (author !== 'ThePrequelMemesBot') {
+  if (author !== 'ThePrequelMemesBot' || author !== 'repost_detector_hk47') {
 
           if (comment.body === 'Hello There' || comment.body === 'Hello there' || comment.body === 'hello there' ||
               comment.body === 'Hello There!' || comment.body === 'Hello there!' || comment.body === 'hello there!' || comment.body === "HELLO THERE") {

@@ -97,9 +97,8 @@ AllComments.on('comment', (comment) => {
 });
 
 function quoteCheck(comment, source) {
-//  console.log(comment);
+
   var author;
-  //if (source === 'api') {
   if (source === 'api') {
     author = JSON.parse(JSON.stringify(comment.author)).name;
   } else {
@@ -155,13 +154,7 @@ function quoteCheck(comment, source) {
             console.log("reddit.com" + comment.permalink);
             commentReply(comment, 'Not. Yet.', source);
           }
-/*
-          if ((comment.body).includes('will decide your fate')) {
-            console.log("Senate Commented!");
-            console.log("reddit.com" + comment.permalink);
-            commentReply(comment, 'I am the Senate');
-          }
-*/
+
           if (comment.body === 'My lord, is that legal?' || comment.body === 'my lord, is that legal?' || comment.body === 'My lord is that legal?' ||
               comment.body === 'my lord is that legal?' || comment.body === 'Is that legal?' || comment.body === 'is that legal?' || comment.body === 'Is that, legal?' || comment.body === 'is that, legal?') {
             console.log("Legal Commented!");
@@ -259,15 +252,15 @@ function quoteCheck(comment, source) {
           if ((comment.body).includes("doubled since the last time we met")) {
             console.log("Looking Foward to This Commented");
             console.log("reddit.com" + comment.permalink);
-            var pride = (nlp(comment.body)).normalize().match("My #Noun . doubled since the last time we met").nouns(0).out();;
-            if (nlp(pride)) {
-              if (pride === " powers" || pride === " power") {
+            let pride = ((nlp(comment.body)).before('doubled').after('my').out()).replace(/\b(?=have|has)\w+\b/g, "").trim();
+            if (pride) {
+              if (pride === "powers" || pride === "power") {
                 commentReply(comment, 'Good. Twice the pride, double the fall', source);
               } else {
-                commentReply(comment, 'Good. Twice the' + nlp(pride).out() + ', double the fall', source);
+                commentReply(comment, `Good. Twice the ${pride}, double the fall`, source);
               }
             } else {
-              commentReply(comment, 'Good. Twice the' + nlp(pride).out() + ', double the fall', source);
+              commentReply(comment, 'Good. Twice the pride, double the fall', source);
             }
           }
 
@@ -383,14 +376,6 @@ function quoteCheck(comment, source) {
             console.log("I hate you Commented");
             console.log("reddit.com" + comment.permalink);
             commentReply(comment, "You were my brother, Anakin! I loved you", source);
-          }
-
-          if (comment.body === "He's a Sith lord" || comment.body === "he's a Sith lord" || comment.body === "He's a Sith lord." || comment.body === "he's a Sith lord." ||
-              comment.body === "He's a sith lord" || comment.body === "He's a sith lord." || comment.body === "he's a sith lord" || comment.body === "he's a sith lord." ||
-              comment.body === "Hes a Sith lord" || comment.body === "hes a Sith lord" || comment.body === "Hes a sith lord" || comment.body === "hes a sith lord") {
-            console.log("Sith Lord Commented");
-            console.log("reddit.com" + comment.permalink);
-            commentReply(comment, "Chancellor Palpatine, Sith lords are our speciality", source);
           }
 
           if ((comment.body).includes("e was too dangerous to be left alive.") || (comment.body).includes("e was too dangerous to be kept alive.")) {
@@ -573,13 +558,13 @@ function quoteCheck(comment, source) {
             commentReply(comment, "Not to me", source);
           }
 
-          if (((nlp(comment.body)).normalize().out()).replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "") === "ewan mcgregor") {
+          if (((nlp(comment.body)).toLowerCase().out()).replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "") === "ewan mcgregor") {
             console.log("Ewan Commented");
             console.log("reddit.com" + comment.permalink);
             commentReply(comment, "You mean Jesus?", source);
           }
 
-          if (((nlp(comment.body)).normalize().out()).replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "") === "good soldiers follow orders") {
+          if (((nlp(comment.body)).toLowerCase().out()).replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "") === "good soldiers follow orders") {
             console.log("Good Soldiers Commented");
             console.log("reddit.com" + comment.permalink);
             if (getRandomInt(3) === 0 || getRandomInt(3) === 1) {
@@ -589,19 +574,19 @@ function quoteCheck(comment, source) {
             }
           }
 
-          if (((nlp(comment.body)).normalize().out()).replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "") === "general roboti") {
+          if (((nlp(comment.body)).toLowerCase().out()).replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "") === "general roboti") {
             console.log("General Roboti Commented");
             console.log("reddit.com" + comment.permalink);
             commentReply(comment, "I am a bot one", source);
           }
 
-          if (((nlp(comment.body)).normalize().out()).replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "") === "general kenoc") {
+          if (((nlp(comment.body)).toLowerCase().out()).replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "") === "general kenoc") {
             console.log("General KenOC Commented");
             console.log("reddit.com" + comment.permalink);
             commentReply(comment, "You are a rare one!", source);
           }
 
-          if ((comment.body).includes("you will pay for your insolence")) {
+          if ((comment.body).includes("will pay for your insolence")) {
             console.log("Insolence Commented");
             console.log("reddit.com" + comment.permalink);
             commentReply(comment, "We are pirates, we don\'t even know what that means!", source);
@@ -637,10 +622,22 @@ function quoteCheck(comment, source) {
             commentReply(comment, "Anakin. Control your insolence, the Count is concentrating", source);
           }
 
-          if ((nlp((comment.body).replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, ""))).normalize().out('normal') === "welcome to iego") {
+          if ((nlp((comment.body).replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, ""))).toLowerCase().out('normal') === "welcome to iego") {
             console.log("Welcome to Iego Commented");
             console.log("reddit.com" + comment.permalink);
             commentReply(comment, "Welcome to Iego", source);
+          }
+
+          if (((nlp(comment.body)).toLowerCase().out()).replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "") === "general misspelli") {
+            console.log("General Misspelli Commented");
+            console.log("reddit.com" + comment.permalink);
+            commentReply(comment, "You are a misspelled one!", source);
+          }
+
+          if (((nlp(comment.body)).normalize().toLowerCase().out()).replace(/[.,\/#!$%?\^&\*;:{}=\-_`~()]/g, "") === "he is a sith lord") {
+            console.log("Sith Lord Commented");
+            console.log("reddit.com" + comment.permalink);
+            commentReply(comment, "Chancellor Palpatine, Sith lords are our speciality", source);
           }
 
           var BF2 = [
@@ -651,7 +648,7 @@ function quoteCheck(comment, source) {
             "ALL HANDS TO BATTLE STATIONS. I REPEAT. ALL HANDS TO BATTLE STATIONS",
             "ANOTHER COMMAND POST FOR THE REPUBLIC",
             "COMMAND POST UNDER ATTACK",
-            "ENEMY RE-ENFORCEMENTS ARE DECREASING",
+            "ENEMY REINFORCEMENTS ARE DECREASING",
             "SAVE IT FOR THE ENEMY",
             "SUPER BATTLE DROIDS, TAKE EM DOWN",
             "THEY\'VE SENT IN THE SUPERS",
@@ -673,20 +670,20 @@ function quoteCheck(comment, source) {
           if (source === 'inbox') {
 
             if (nlp((comment.body).replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "")).out('normal') === 'good bot') {
-              let rand = getRandomInt(7);
+              let rand = getRandomInt(6);
               console.log("Good Bot Commented");
               if (rand === 0) {
-                commentReply(comment, "Yippee!", source);
-              } else if (rand === 1) {
                 commentReply(comment, `General u/${comment.author}! You are a nice one.`, source);
-              } else if (rand === 2) {
+              } else if (rand === 1) {
                 commentReply(comment, `Chancellor u/${comment.author}, being a good bot is my speciality`, source);
-              } else if (rand === 3) {
+              } else if (rand === 2) {
                 commentReply(comment, "I\'ve been looking forward to this", source);
+              } else if (rand === 3) {
+                commentReply(comment, `The Force is strong with you, u/${comment.author}. A powerful redditor you will become.`, source);
               } else if (rand === 4) {
-                commentReply(comment, `The Force is strong with you, u/${comment.author}`, source);
-              } else if (rand === 5) {
                 commentReply(comment, "I\'m just a simple bot, trying to make my way on reddit", source);
+              } else if (rand === 5) {
+                commentReply(comment, `You are strong and wise, u/${comment.author}, and I am very proud of you.`, source);
               } else {
                 commentReply(comment, "This is a happy moment. The happiest moment of my life.", source);
               }

@@ -5,7 +5,7 @@ const Queue = require('./queue.js');
 const queue = new Queue();
 
 // HTTP Server for POST's from Server 2
-const app = require('./app.js');
+const app = require('./express.js');
 
 // Webshot module for screenshots, Imgur module for uploading to Imgur
 const webshot = require('webshot');
@@ -732,7 +732,7 @@ function quoteCheck(comment, source) {
                       }
                   }
         */
-        
+
         // Inbox specific responses
         if (source === 'inbox') {
 
